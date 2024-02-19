@@ -22,7 +22,7 @@ As per the COVID risk minimization plan:
 - Participant fills in the Economic Experiment Survey following the google form link.
 - Participant watches the video for instructions: instructions.mp4 (audio was generated via Baidu's text-to-speech API).
 - Experimenter helps participant to check sound;
-- Experimenter helps participant to start task code by running `python <task_script.py>` (`_odd’ for odd subjid and `_even’ for even subjid) and instructs participant from the distance to press tab twice to enter subjid (subjid=netid for fMRI study) and input `1’ for the run number.
+- Experimenter helps participant to start task code by running `python <task_script.py>` ('_odd' for odd subjid and '_even' for even subjid) and instructs participant from the distance to press tab twice to enter subjid (subjid=netid for fMRI study) and input '1' for the run number.
 - Participant fills in the feedback survey, following the google form link.
 - Experimenter calculates the payment. 
 - Experimenter pays participant via Alipay or WeChat: total amount is added to the schedule google spreadsheet, only amount due today is paid, the delayed amount is scheduled to be paid after the delay in days. Exchange rate: 20 + 0.02xtotal_short + 2xchosentrial_long
@@ -69,7 +69,7 @@ Subjects will complete this session (~1.5 hours) on the Dell laptop labelled 'fM
 14. Repeat steps 10-13 for three more times (total number of runs = 4).
 15. Calculate payment. To balance payment between short and long task, only reward < 20 in long task will be picked as final reward.
 16. After fMRI session, if participant has any feedback, ask them to write down in a blank file within Feedback_fMRI folder .
-17. Save fMRI data to CDs, write on the CD 'date' 'subjid'
+17. Save fMRI data to CDs, write on the CD 'date' and 'subjid'
 
 Compensation:
 According to IRB approval, compensation is calculated as below, automatically, using python script above
