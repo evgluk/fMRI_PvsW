@@ -9,7 +9,7 @@ Some adjustments to computing session were made according to the COVID risk mini
 
 ### Before an experiment session
 - Check subjid is in the dtb;
-- Subject_info.csv file should be manually filled on experiment computer (columns `netid',	`group',	`set',	`zoomed-in L',	`zoomed-in S';
+- Subject_info.csv file should be manually filled on experiment computer (columns 'netid',	'group',	'set',	'zoomed-in L',	'zoomed-in S';
 - Experimenter prepares (and sanitizes) laptop’s touchpad, mouse, and headphones.
 
 ### During the session
