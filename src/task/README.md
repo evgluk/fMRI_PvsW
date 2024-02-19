@@ -67,7 +67,7 @@ Subjects will complete this session (~1.5 hours) on the Dell laptop labelled 'fM
 12. Pay attention to when the runs end. Once a run finishes, let technician know to stop scanning.
 13. Ask subjects how they are feeling after each run. Ask subject if they need to rest for some time after two runs.
 14. Repeat steps 10-13 for three more times (total number of runs = 4).
-15. Calculate payment by running `python fMRI_payment.py` (creates a payment.csv file to upload to dtb). To balance payment between short and long task, only reward < 20 in long task will be picked as final reward.
+15. Calculate payment. To balance payment between short and long task, only reward < 20 in long task will be picked as final reward.
 16. After fMRI session, if participant has any feedback, ask them to write down in a blank file within Feedback_fMRI folder .
 17. Save fMRI data to CDs, write on the CD 'date' 'subjid'
 
