@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # This code converts behavioral data from fMRI session into BIDS format, and
-# store them in each subject's folder.
-# This script is intended to be run on ino.
+# stores them in each subject's folder.
+# This script is intended to be run on server.
 
-## The output includes 10 columns, onset, duration, trial_type, delayed_reward, delaytime	and choice.
+## The output includes 10 columns, onset, duration, trial_type, delayed_reward, delaytime, and choice.
 ## event_type       ---> event type
 ## onset            ---> the onset of the event
 ## duration         ---> the duration of the event
 ## trial_type       ---> LongDelay_Behavior or ShortDelay_Behavior
 ## delayed_reward   ---> rewmag of the delayed option
 ## delaytime        ---> delay time of the delayed option
-## choice           ---> decison on current trial, 0--now, 1--delay, nan--no press
+## choice           ---> decision on current trial, 0--now, 1--delay, nan--no press
 ## outcome_mag      ---> reward magnitude of the chosen option
 ## outcome_delay    ---> delay of the chosen option
 ## subjective_value ---> subjective value of the delayed option
@@ -19,15 +19,15 @@
 ## 1. read subjinfo from local subject_info csv file, to get fMRI id and BIDS id (two new columns);
 ## 2. check whether data of the current subject has been converted, if yes, then skip;
 ## 3. if no, connect to dtb and get trial data;
-## 4. iterate over every two seesions:(to put two session into one run)
+## 4. iterate over every two sessions:(to put two session into one run)
 ##      a. get nset, duration, trial_type, delayed_reward, delaytime	and choice of each events;
 ##      b. PLEASE NOTICE, in fMRI data file, the onset of the 2nd session in one run starts from 0 again,
 ##         this code calculates the time difference between last trial of 1st session and the 1st trial in
 ##         the 2nd, and then adds the difference on the onset of events in the 2nd session.
-##      c. write converted data into tsv and assign name based on BIDS specification, and adds json file with
-##         detailed data describtion inside. 
-##      d. conversion information (sucess or fail) will be printed
-## 5. db connection is self-closed by helpers
+##      c. write converted data into tsv and assign name based on BIDS specification, and add json file with
+##         detailed data description inside. 
+##      d. conversion information (success or fail) will be printed
+## 5. db connection through helpers package at ErlichLab
 
 ## BUGS
 ## 1. nan data can't be written as 'n/a' into tsv files as suggested by BIDS, it worked on Windows but not on ubuntu. 
@@ -39,7 +39,7 @@ import json
 from datetime import datetime
 import math
 import numpy as np
-sys.path.append('/media/erlichlab/hdd/Erlichlab_repos') # path for helpers
+sys.path.append('<...>') # path for helpers
 from helpers import DBUtilsClass as db 
 
 # calculate difference between two onsets in two tasks in the same run
@@ -47,7 +47,7 @@ def difference(sess_info):
     sess_1st = dbc.query("select trialtime, j_trial_end from fmri.trials where sessid = %s"%sess_info['id'][0]) # timing info in 1st sess
     sess_2nd = dbc.query("select trialtime, j_trial_end from fmri.trials where sessid = %s"%sess_info['id'][1]) # timing info in 2nd sess
     T1 = sess_1st[0][1] # time length from trigger to 1st trial end in 1st sess
-    T2 = (sess_2nd[0][0]-sess_1st[0][0]).seconds # time difference betweem 1st sess and 2nd sess
+    T2 = (sess_2nd[0][0]-sess_1st[0][0]).seconds # time difference between 1st sess and 2nd sess
     T3 = sess_2nd[0][1] # time length from trigger to 1st trial end in 2nd sess
     T_diff = T1 + T2 - T3 # time difference between two sessions' reference points
     diff = [0, T_diff]
@@ -55,8 +55,8 @@ def difference(sess_info):
 
 # write current data into tsv and json files
 def filewriter(run_number,data,bidsid):
-    tsvfile = '/media/erlichlab/hdd/fMRI_Data_Storage/PostponingVSWaiting/%s/func/%s_task-delay_run-0%s_events.tsv'%(bidsid,bidsid,run_number) 
-    jsonfile = '/media/erlichlab/hdd/fMRI_Data_Storage/PostponingVSWaiting/%s/func/%s_task-delay_run-0%s_events.json'%(bidsid,bidsid,run_number) 
+    tsvfile = '<...>/%s/func/%s_task-delay_run-0%s_events.tsv'%(bidsid,bidsid,run_number) 
+    jsonfile = '<...>/%s/func/%s_task-delay_run-0%s_events.json'%(bidsid,bidsid,run_number) 
     data.to_csv(tsvfile, sep='\t',index=False)
     json_dict = {'onset':{"LongName":"Onset Time",
                           "Units":"seconds"},
@@ -86,9 +86,9 @@ def filewriter(run_number,data,bidsid):
     with open(jsonfile,'w',encoding='utf-8') as f:
         json.dump(json_dict,f,indent=4)
 
-# check whether the data files of current subject have been converted
+# check whether the data files of the current subject have been converted
 def check_double_conversion(subjid,bidsid):
-    file_check = glob.glob('/media/erlichlab/hdd/fMRI_Data_Storage/PostponingVSWaiting/%s/func/%s_task-delay*.tsv'%(bidsid,bidsid)) 
+    file_check = glob.glob(<...>/%s/func/%s_task-delay*.tsv'%(bidsid,bidsid)) 
     if len(file_check) == 4:
         return False
     elif len(file_check) == 0:
@@ -186,7 +186,7 @@ def data_organization(subjid):
 if __name__ == "__main__":
     dbc = db.Connection() # connect to database
     dbc.use('fmri')
-    sub_init = pd.read_csv(r'/media/erlichlab/hdd/Erlichlab_repos/fMRI_delay/Code/Subject_info.csv',header = 0) 
+    sub_init = pd.read_csv(r'<...>/Subject_info.csv',header = 0) 
     # sub_temp = sub_init.drop(['zoomed-in L', 'zoomed-in S'], axis=1)
     # sub_list = sub_temp.dropna(axis=0,how='any') # get all subjids whose imaging data have been converted
     # sub_list.reset_index(drop=True, inplace=True)
