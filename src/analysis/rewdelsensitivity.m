@@ -102,5 +102,5 @@ ylabel('Long P(later)');
 set (gca,'FontSize', 14);
 set(gcf,'PaperPosition',[0 0 5 4]);
 set(gcf, 'PaperSize', [5 4]);
-saveas(gcf, '~/Downloads/passcriteria.png','png');
+saveas(gcf, '<...>/passcriteria.png','png');
 
