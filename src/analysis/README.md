@@ -14,9 +14,9 @@
 
 ## 1. Behavioral data organization
 Behavioral data was collected in two sessions: computer session and fMRI session. 
-In this project, behavioral data were recorded as csv files locally on Dell laptops and then moved to the DTB. 
+In this project, behavioral data were recorded as `.csv` files locally on Dell laptops and then moved to the DTB. 
 
-After data was uploaded to DTB, the subjid, the fMRI id and BIDS id of the current subject were matched. Then ran in bash `python3 createbids_beh.py` to add BIDS events files. 
+After data was uploaded to DTB, the subjid, the fMRI_id and BIDS_id of the current subject were matched. Then ran in bash `python3 createbids_beh.py` to add BIDS events files. 
 
 The output included 10 columns:
 - onset            ---> the onset of the event；
@@ -25,7 +25,7 @@ The output included 10 columns:
 - trial_type       ---> LongDelay_Behavior or ShortDelay_Behavior；
 - delayed_reward   ---> rewmag of the delayed option；
 - delaytime        ---> delay time of the delayed option；
-- choice           ---> decison on current trial, 0--now, 1--delay, n/a--no press；
+- choice           ---> decision on current trial, 0--now, 1--delay, n/a--no press；
 - outcome_mag      ---> reward magnitude of the chosen option, if no response on current trial, then this is decided by the computer-picked choice, and the same below;
 - outcome_delay    ---> delay of the chosen option；
 - subjective_value ---> subjective value of the delayed option.
