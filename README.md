@@ -1,10 +1,10 @@
 # fMRI_PvsW
 
-A git repository for task code, image acquisition sequence, preregistration copy (https://osf.io/7fydc/), and analysis of Postponing vs Wating fMRI study.
+A git repository for task code, image acquisition sequence (`fMRI` folder), preregistration copy (`preregistration` folder, https://osf.io/7fydc/), and analysis of Postponing vs Waiting fMRI study.
 
 ## src
 
-The src folder contains the code to run the tasks (in task) and also code that will generate the main figures (in analysis).
+The src folder contains the code to run the tasks (in `task` folder) and also code that will generate the main behavioral figures and reproduce fMRI analysis (in `analysis` folder).
 
 ## data
 
